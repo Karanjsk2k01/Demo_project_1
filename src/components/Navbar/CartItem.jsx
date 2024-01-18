@@ -1,6 +1,4 @@
-
 import classes from './CartItem.module.css';
-
 
 const CartItem = (props) => {
   const price = `$${props.price.toFixed(2)}`;
@@ -12,16 +10,8 @@ const CartItem = (props) => {
         <div className={classes.summary}>
           <span className={classes.price}>{price}</span>
           <div className={classes.amount}>
-            <span>L </span>
-            <spam>-1</spam>
-          </div>
-          <div className={classes.amount}>
-            <span>XL </span>
-            <spam>-1</spam>
-          </div>
-          <div className={classes.amount}>
-            <span>SM </span>
-            <spam>-1</spam>
+            <span style={{ padding: '0 5px' }}>X </span>
+            <span>{props.quantity}</span>
           </div>
         </div>
       </div>

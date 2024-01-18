@@ -1,27 +1,33 @@
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
 import Modal from '../UI/Modal'
+import { useContext } from 'react';
+import CartContext from '../store/cart-context';
 
 const Cart = (props) => {
 
-  const dummyData = [
-    {
-      id: 'm1',
-      name: 'Adidas',
-      description: 'Finest fish and veggies',
-      price: 22.99,
-    },
+  const cartContext = useContext(CartContext);
 
-  ];
+
+  // const dummyData = [
+  //   {
+  //     id: 'm1',
+  //     name: 'Adidas',
+  //     description: 'Finest fish and veggies',
+  //     price: 22.99,
+  //   },
+
+  // ];
 
   const cartItems = (
     <ul className={classes['cart-items']}>
-      {dummyData.map((item) => (
+      {cartContext.items.map((item) => (
         <CartItem
           key={item.id}
           name={item.name}
           amount={item.amount}
           price={item.price}
+          quantity={item.quantity}
         />
       ))}
     </ul>
@@ -34,7 +40,7 @@ const Cart = (props) => {
         {cartItems}
         <div className={classes.total}>
           <span className={classes.subtotal}>Total</span>
-          <span className={classes.subtotal}> $0</span>
+          <span className={classes.subtotal}> ${cartContext.totalAmount}</span>
         </div>
         <div className={classes.actions}>
           <button className={classes['button--alt']} onClick={props.onClose}>
